@@ -190,7 +190,7 @@ const Breadcrumbs = ({
   }
 
   return (
-    <div
+    <nav
       style={containerStyle}
       className={containerClassName}
       aria-label="breadcrumbs"
@@ -236,19 +236,32 @@ const Breadcrumbs = ({
                     : inactiveItemStyle
                 }
               >
-                <span>
-                  {convertBreadcrumb(
-                    breadcrumb.breadcrumb,
-                    labelsToUppercase,
-                    replaceCharacterList,
-                    transformLabel
-                  )}
-                </span>
+                {i === breadcrumbs.length - 1 ? (
+                  <span>
+                    {convertBreadcrumb(
+                      breadcrumb.breadcrumb,
+                      labelsToUppercase,
+                      replaceCharacterList,
+                      transformLabel
+                    )}
+                  </span>
+                ) : (
+                  <Link href={breadcrumb.href}>
+                    <a>
+                      {convertBreadcrumb(
+                        breadcrumb.breadcrumb,
+                        labelsToUppercase,
+                        replaceCharacterList,
+                        transformLabel
+                      )}
+                    </a>
+                  </Link>
+                )}
               </li>
             );
           })}
       </ol>
-    </div>
+    </nav>
   );
 };
 

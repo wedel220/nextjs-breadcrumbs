@@ -86,7 +86,7 @@ var Breadcrumbs = function Breadcrumbs(_ref) {
     return null;
   }
 
-  return React__default.createElement("div", {
+  return React__default.createElement("nav", {
     style: containerStyle,
     className: containerClassName,
     "aria-label": "breadcrumbs"
@@ -109,7 +109,9 @@ var Breadcrumbs = function Breadcrumbs(_ref) {
       key: breadcrumb.href,
       className: i === breadcrumbs.length - 1 ? activeItemClassName : inactiveItemClassName,
       style: i === breadcrumbs.length - 1 ? activeItemStyle : inactiveItemStyle
-    }, React__default.createElement("span", null, convertBreadcrumb(breadcrumb.breadcrumb, labelsToUppercase, replaceCharacterList, transformLabel)));
+    }, i === breadcrumbs.length - 1 ? React__default.createElement("span", null, convertBreadcrumb(breadcrumb.breadcrumb, labelsToUppercase, replaceCharacterList, transformLabel)) : React__default.createElement(Link, {
+      href: breadcrumb.href
+    }, React__default.createElement("a", null, convertBreadcrumb(breadcrumb.breadcrumb, labelsToUppercase, replaceCharacterList, transformLabel))));
   })));
 };
 

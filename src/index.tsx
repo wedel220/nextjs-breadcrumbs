@@ -237,7 +237,7 @@ const Breadcrumbs = ({
                 }
               >
                 {i === breadcrumbs.length - 1 ? (
-                  <span>
+                  <span data-i={i} data-length={breadcrumbs.length - 1}>
                     {convertBreadcrumb(
                       breadcrumb.breadcrumb,
                       labelsToUppercase,
@@ -247,7 +247,7 @@ const Breadcrumbs = ({
                   </span>
                 ) : (
                   <Link href={breadcrumb.href}>
-                    <a>
+                    <a data-i={i} data-length={breadcrumbs.length - 1}>
                       {convertBreadcrumb(
                         breadcrumb.breadcrumb,
                         labelsToUppercase,

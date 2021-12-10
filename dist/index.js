@@ -91,27 +91,57 @@ var Breadcrumbs = function Breadcrumbs(_ref) {
     className: containerClassName,
     "aria-label": "breadcrumbs"
   }, React__default.createElement("ol", {
+    itemScope: true,
+    itemType: "https://schema.org/BreadcrumbList",
     style: listStyle,
     className: useDefaultStyle ? '_2jvtI' : listClassName
   }, !omitRootLabel && React__default.createElement("li", {
+    itemScope: true,
+    itemProp: "itemListElement",
+    itemType: "https://schema.org/ListItem",
     style: inactiveItemStyle,
     className: inactiveItemClassName
   }, React__default.createElement(Link, {
     href: "/"
-  }, React__default.createElement("a", null, convertBreadcrumb(rootLabel || 'Home', labelsToUppercase, replaceCharacterList, transformLabel)))), breadcrumbs.length >= 1 && breadcrumbs.map(function (breadcrumb, i) {
+  }, React__default.createElement("a", {
+    itemProp: "item"
+  }, React__default.createElement("span", {
+    itemProp: "name"
+  }, convertBreadcrumb(rootLabel || 'Home', labelsToUppercase, replaceCharacterList, transformLabel)), React__default.createElement("meta", {
+    itemProp: "position",
+    content: "1"
+  })))), breadcrumbs.length >= 1 && breadcrumbs.map(function (breadcrumb, i) {
+    var index = 1;
+
     if (!breadcrumb || breadcrumb.breadcrumb.length === 0 || omitIndexList && omitIndexList.find(function (value) {
       return value === i;
     }) != null) {
       return;
     }
 
+    index++;
     return React__default.createElement("li", {
+      itemScope: true,
+      itemProp: "itemListElement",
+      itemType: "https://schema.org/ListItem",
       key: breadcrumb.href,
       className: i === breadcrumbs.length - 1 ? activeItemClassName : inactiveItemClassName,
       style: i === breadcrumbs.length - 1 ? activeItemStyle : inactiveItemStyle
-    }, i === breadcrumbs.length - 1 ? React__default.createElement("span", null, convertBreadcrumb(breadcrumb.breadcrumb, labelsToUppercase, replaceCharacterList, transformLabel)) : React__default.createElement(Link, {
+    }, i === breadcrumbs.length - 1 ? React__default.createElement(React.Fragment, null, React__default.createElement("span", {
+      itemProp: "name"
+    }, convertBreadcrumb(breadcrumb.breadcrumb, labelsToUppercase, replaceCharacterList, transformLabel)), React__default.createElement("meta", {
+      itemProp: "position",
+      content: "" + index
+    })) : React__default.createElement(Link, {
       href: breadcrumb.href
-    }, React__default.createElement("a", null, convertBreadcrumb(breadcrumb.breadcrumb, labelsToUppercase, replaceCharacterList, transformLabel))));
+    }, React__default.createElement("a", {
+      itemProp: "item"
+    }, React__default.createElement("span", {
+      itemProp: "name"
+    }, convertBreadcrumb(breadcrumb.breadcrumb, labelsToUppercase, replaceCharacterList, transformLabel)), React__default.createElement("meta", {
+      itemProp: "position",
+      content: "" + i
+    }))));
   })));
 };
 

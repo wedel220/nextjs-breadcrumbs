@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Fragment } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import './styles.css';
@@ -196,25 +196,37 @@ const Breadcrumbs = ({
       aria-label="breadcrumbs"
     >
       <ol
+        itemScope
+        itemType="https://schema.org/BreadcrumbList"
         style={listStyle}
         className={useDefaultStyle ? '_2jvtI' : listClassName}
       >
         {!omitRootLabel && (
-          <li style={inactiveItemStyle} className={inactiveItemClassName}>
+          <li
+            itemScope
+            itemProp="itemListElement"
+            itemType="https://schema.org/ListItem"
+            style={inactiveItemStyle}
+            className={inactiveItemClassName}
+          >
             <Link href="/">
-              <a>
-                {convertBreadcrumb(
-                  rootLabel || 'Home',
-                  labelsToUppercase,
-                  replaceCharacterList,
-                  transformLabel
-                )}
+              <a itemProp="item">
+                <span itemProp="name">
+                  {convertBreadcrumb(
+                    rootLabel || 'Home',
+                    labelsToUppercase,
+                    replaceCharacterList,
+                    transformLabel
+                  )}
+                </span>
+                <meta itemProp="position" content="1"></meta>
               </a>
             </Link>
           </li>
         )}
         {breadcrumbs.length >= 1 &&
           breadcrumbs.map((breadcrumb, i) => {
+            let index = 1;
             if (
               !breadcrumb ||
               breadcrumb.breadcrumb.length === 0 ||
@@ -223,8 +235,12 @@ const Breadcrumbs = ({
             ) {
               return;
             }
+            index++;
             return (
               <li
+                itemScope
+                itemProp="itemListElement"
+                itemType="https://schema.org/ListItem"
                 key={breadcrumb.href}
                 className={
                   i === breadcrumbs.length - 1
@@ -238,23 +254,29 @@ const Breadcrumbs = ({
                 }
               >
                 {i === breadcrumbs.length - 1 ? (
-                  <span>
-                    {convertBreadcrumb(
-                      breadcrumb.breadcrumb,
-                      labelsToUppercase,
-                      replaceCharacterList,
-                      transformLabel
-                    )}
-                  </span>
-                ) : (
-                  <Link href={breadcrumb.href}>
-                    <a>
+                  <Fragment>
+                    <span itemProp="name">
                       {convertBreadcrumb(
                         breadcrumb.breadcrumb,
                         labelsToUppercase,
                         replaceCharacterList,
                         transformLabel
                       )}
+                    </span>
+                    <meta itemProp="position" content={`${index}`}></meta>
+                  </Fragment>
+                ) : (
+                  <Link href={breadcrumb.href}>
+                    <a itemProp="item">
+                      <span itemProp="name">
+                        {convertBreadcrumb(
+                          breadcrumb.breadcrumb,
+                          labelsToUppercase,
+                          replaceCharacterList,
+                          transformLabel
+                        )}
+                      </span>
+                      <meta itemProp="position" content={`${i}`}></meta>
                     </a>
                   </Link>
                 )}

@@ -83,6 +83,7 @@ var Breadcrumbs = function Breadcrumbs(_ref) {
     return null;
   }
 
+  var index = 1;
   return React.createElement("nav", {
     style: containerStyle,
     className: containerClassName,
@@ -108,8 +109,6 @@ var Breadcrumbs = function Breadcrumbs(_ref) {
     itemProp: "position",
     content: "1"
   })))), breadcrumbs.length >= 1 && breadcrumbs.map(function (breadcrumb, i) {
-    var index = 1;
-
     if (!breadcrumb || breadcrumb.breadcrumb.length === 0 || omitIndexList && omitIndexList.find(function (value) {
       return value === i;
     }) != null) {
@@ -137,7 +136,7 @@ var Breadcrumbs = function Breadcrumbs(_ref) {
       itemProp: "name"
     }, convertBreadcrumb(breadcrumb.breadcrumb, labelsToUppercase, replaceCharacterList, transformLabel)), React.createElement("meta", {
       itemProp: "position",
-      content: "" + i
+      content: "" + index
     }))));
   })));
 };

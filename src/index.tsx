@@ -188,7 +188,7 @@ const Breadcrumbs = ({
   if (!breadcrumbs) {
     return null;
   }
-
+  let index = 1;
   return (
     <nav
       style={containerStyle}
@@ -226,7 +226,6 @@ const Breadcrumbs = ({
         )}
         {breadcrumbs.length >= 1 &&
           breadcrumbs.map((breadcrumb, i) => {
-            let index = 1;
             if (
               !breadcrumb ||
               breadcrumb.breadcrumb.length === 0 ||
@@ -276,7 +275,7 @@ const Breadcrumbs = ({
                           transformLabel
                         )}
                       </span>
-                      <meta itemProp="position" content={`${i}`}></meta>
+                      <meta itemProp="position" content={`${index}`}></meta>
                     </a>
                   </Link>
                 )}

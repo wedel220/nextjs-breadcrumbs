@@ -219,7 +219,7 @@ const Breadcrumbs = ({
               !breadcrumb ||
               breadcrumb.breadcrumb.length === 0 ||
               (omitIndexList &&
-                omitIndexList.find((value) => value + 1 === i + 1))
+                omitIndexList.find((value) => value === i) != null)
             ) {
               return;
             }
@@ -238,7 +238,7 @@ const Breadcrumbs = ({
                 }
               >
                 {i === breadcrumbs.length - 1 ? (
-                  <span data-index={i}>
+                  <span>
                     {convertBreadcrumb(
                       breadcrumb.breadcrumb,
                       labelsToUppercase,
@@ -248,7 +248,7 @@ const Breadcrumbs = ({
                   </span>
                 ) : (
                   <Link href={breadcrumb.href}>
-                    <a data-index={i}>
+                    <a>
                       {convertBreadcrumb(
                         breadcrumb.breadcrumb,
                         labelsToUppercase,

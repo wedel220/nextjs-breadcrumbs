@@ -106,9 +106,13 @@ var Breadcrumbs = function Breadcrumbs(_ref) {
       key: breadcrumb.href,
       className: i === breadcrumbs.length - 1 ? activeItemClassName : inactiveItemClassName,
       style: i === breadcrumbs.length - 1 ? activeItemStyle : inactiveItemStyle
-    }, i === breadcrumbs.length - 1 ? React.createElement("span", null, convertBreadcrumb(breadcrumb.breadcrumb, labelsToUppercase, replaceCharacterList, transformLabel)) : React.createElement(Link, {
+    }, i === breadcrumbs.length - 1 ? React.createElement("span", {
+      "data-index": i
+    }, convertBreadcrumb(breadcrumb.breadcrumb, labelsToUppercase, replaceCharacterList, transformLabel)) : React.createElement(Link, {
       href: breadcrumb.href
-    }, React.createElement("a", null, convertBreadcrumb(breadcrumb.breadcrumb, labelsToUppercase, replaceCharacterList, transformLabel))));
+    }, React.createElement("a", {
+      "data-index": i
+    }, convertBreadcrumb(breadcrumb.breadcrumb, labelsToUppercase, replaceCharacterList, transformLabel))));
   })));
 };
 

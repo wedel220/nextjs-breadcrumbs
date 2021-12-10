@@ -97,7 +97,7 @@ var Breadcrumbs = function Breadcrumbs(_ref) {
     href: "/"
   }, React.createElement("a", null, convertBreadcrumb(rootLabel || 'Home', labelsToUppercase, replaceCharacterList, transformLabel)))), breadcrumbs.length >= 1 && breadcrumbs.map(function (breadcrumb, i) {
     if (!breadcrumb || breadcrumb.breadcrumb.length === 0 || omitIndexList && omitIndexList.find(function (value) {
-      return value === i;
+      return value + 1 === i + 1;
     })) {
       return;
     }
